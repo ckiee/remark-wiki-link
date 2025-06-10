@@ -56,21 +56,27 @@ function wikiLinkPlugin(opts = {}) {
       }
 
       return eat(match[0])({
-        type: 'wikiLink',
+        type: "wikiLink",
         value: name,
         data: {
           alias: displayName,
           permalink: permalink,
           exists: exists,
-          hName: 'a',
+          hName: "a",
           hProperties: {
             className: classNames,
-            href: hrefTemplate(permalink)
+            href: hrefTemplate(permalink),
           },
-          hChildren: [{
-            type: 'text',
-            value: displayName
-          }]
+          hChildren: [
+            {
+              type: "element",
+              tagName: "span",
+                properties: {},
+                children: [{
+                  type: "text",
+                  value: displayName,
+            }],
+            }]
         },
       });
     }
